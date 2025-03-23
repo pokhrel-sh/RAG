@@ -33,12 +33,13 @@ def create_hnsw_index():
     print("Index created successfully.")
 
 # Generate an embedding using nomic-embed-text
-def get_embedding(text: str, model: str = "nomic-embed-text") -> list:
+def get_embedding(text: str, model: str = "paraphrase-multilingual") -> list:
     response = ollama.embeddings(model=model, prompt=text)
     return response["embedding"]
 
 # Store the calculated embedding in Redis
-def store_embedding(doc_id: str, text: str, source: str, chunk_id: str, embedding: list):
+def store_embedding(doc_id: str, text: str, source: str, 
+    chunk_id: str, embedding: list):
     key = f"{DOC_PREFIX}{doc_id}"
     redis_client.hset(
         key,
@@ -158,7 +159,7 @@ def answer_question(question, k=5):
     
     Question: {question}
     
-    Answer the question based on the context provided above. If the answer is not in the context, state that the information is not available.
+    Answer the question based on the context provided above. If the answer is not in the context, give the answer and then state that the information is not available.
     """
     
     # Using Ollama to generate the answer
