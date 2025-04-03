@@ -71,7 +71,7 @@ nomic for Embedding
 mistral for LLM
 ```
 
-# Disclousure
+# Disclosure
 
 Please note, this is our opinion on recommendation and does not discredit the experience of others. This is how we felt based on the data given by these LLM, embedding models, and the databases.
 
